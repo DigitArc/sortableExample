@@ -15048,16 +15048,16 @@ var mainContainer = _jquery.default.parseHTML("<ul data-list=\"main-list\" class
 
 _data.people.map(function (item) {
   if (item.name) {
-    mainContainer.append(_jquery.default.parseHTML("<li class=\"list-group-item\">".concat(item.name, "</li>"))[0]);
+    mainContainer.append(_jquery.default.parseHTML("<li data-type=\"single-item\" class=\"list-group-item\">".concat(item.name, "</li>"))[0]);
   }
 
   if (item.categoryName) {
-    var childrenGroupWrapper = _jquery.default.parseHTML("<li class=\"list-group-item\"><h3 class=\"mb-3\">".concat(item.categoryName, "</h3></li>"))[0];
+    var childrenGroupWrapper = _jquery.default.parseHTML("<li data-type=\"category-container\" data-category-name=\"".concat(item.categoryName, "\" class=\"list-group-item\"><h3 class=\"mb-3\">").concat(item.categoryName, "</h3></li>"))[0];
 
     var childrenGroup = _jquery.default.parseHTML("<ul data-list=\"".concat(item.categoryName, "\" class=\"list-group pb-5 pt-5\"></ul>"))[0];
 
     item.children.map(function (child) {
-      return childrenGroup.append(_jquery.default.parseHTML("<li class=\"list-group-item\">".concat(child.name, "</li>"))[0]);
+      return childrenGroup.append(_jquery.default.parseHTML("<li data-type=\"single-item\" class=\"list-group-item\">".concat(child.name, "</li>"))[0]);
     });
     childrenGroupWrapper.append(childrenGroup);
     mainContainer.append(childrenGroupWrapper);
@@ -15068,16 +15068,34 @@ listContainer.append(mainContainer);
 var opts = {
   group: "shared",
   onEnd: function onEnd(e) {
+    var draggedItemType = (0, _jquery.default)(e.item).attr("data-type");
     var movedItem = (0, _jquery.default)(e.item).text();
     var from = (0, _jquery.default)(e.from).attr("data-list");
     var to = (0, _jquery.default)(e.to).attr("data-list");
+
+    if (draggedItemType === "category-container") {
+      var removedContainer;
+
+      for (var i = 0; i < _data.people.length; i++) {
+        if (_data.people[i]["categoryName"] && _data.people[i]["categoryName"] === (0, _jquery.default)(e.item).attr("data-category-name")) {
+          removedContainer = _data.people.splice(i, 1);
+        }
+      }
+
+      if (to === "main-list") {
+        _data.people.splice.apply(_data.people, [e.newDraggableIndex, 0].concat(_toConsumableArray(removedContainer)));
+      }
+
+      return;
+    }
+
     var removedElement;
 
-    for (var i = 0; i < _data.people.length; i++) {
-      if (_data.people[i]["name"] && _data.people[i]["name"] === movedItem) {
-        removedElement = _data.people.splice(i, 1);
-      } else if (_data.people[i]["categoryName"] && _data.people[i]["categoryName"] === from) {
-        removedElement = _data.people[i]["children"].splice(_data.people[i]["children"].findIndex(function (item) {
+    for (var _i = 0; _i < _data.people.length; _i++) {
+      if (_data.people[_i]["name"] && _data.people[_i]["name"] === movedItem) {
+        removedElement = _data.people.splice(_i, 1);
+      } else if (_data.people[_i]["categoryName"] && _data.people[_i]["categoryName"] === from) {
+        removedElement = _data.people[_i]["children"].splice(_data.people[_i]["children"].findIndex(function (item) {
           return item.name === movedItem;
         }), 1);
       }
@@ -15086,11 +15104,11 @@ var opts = {
     if (to === "main-list") {
       _data.people.splice.apply(_data.people, [e.newDraggableIndex, 0].concat(_toConsumableArray(removedElement)));
     } else {
-      for (var _i = 0; _i < _data.people.length; _i++) {
-        if (_data.people[_i]["categoryName"] && _data.people[_i]["categoryName"] === to) {
-          var _people$_i$children;
+      for (var _i2 = 0; _i2 < _data.people.length; _i2++) {
+        if (_data.people[_i2]["categoryName"] && _data.people[_i2]["categoryName"] === to) {
+          var _people$_i2$children;
 
-          (_people$_i$children = _data.people[_i]["children"]).splice.apply(_people$_i$children, [e.newDraggableIndex, 0].concat(_toConsumableArray(removedElement)));
+          (_people$_i2$children = _data.people[_i2]["children"]).splice.apply(_people$_i2$children, [e.newDraggableIndex, 0].concat(_toConsumableArray(removedElement)));
         }
       }
     }

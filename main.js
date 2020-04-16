@@ -19,19 +19,23 @@ const mainContainer = $.parseHTML(
 people.map((item) => {
   if (item.name) {
     mainContainer.append(
-      $.parseHTML(`<li class="list-group-item">${item.name}</li>`)[0]
+      $.parseHTML(
+        `<li data-type="single-item" class="list-group-item">${item.name}</li>`
+      )[0]
     );
   }
   if (item.categoryName) {
     const childrenGroupWrapper = $.parseHTML(
-      `<li class="list-group-item"><h3 class="mb-3">${item.categoryName}</h3></li>`
+      `<li data-type="category-container" data-category-name="${item.categoryName}" class="list-group-item"><h3 class="mb-3">${item.categoryName}</h3></li>`
     )[0];
     const childrenGroup = $.parseHTML(
       `<ul data-list="${item.categoryName}" class="list-group pb-5 pt-5"></ul>`
     )[0];
     item.children.map((child) =>
       childrenGroup.append(
-        $.parseHTML(`<li class="list-group-item">${child.name}</li>`)[0]
+        $.parseHTML(
+          `<li data-type="single-item" class="list-group-item">${child.name}</li>`
+        )[0]
       )
     );
     childrenGroupWrapper.append(childrenGroup);
@@ -43,9 +47,27 @@ listContainer.append(mainContainer);
 const opts = {
   group: "shared",
   onEnd: (e) => {
+    const draggedItemType = $(e.item).attr("data-type");
     const movedItem = $(e.item).text();
     const from = $(e.from).attr("data-list");
     const to = $(e.to).attr("data-list");
+
+    if (draggedItemType === "category-container") {
+      let removedContainer;
+      for (let i = 0; i < people.length; i++) {
+        if (
+          people[i]["categoryName"] &&
+          people[i]["categoryName"] === $(e.item).attr("data-category-name")
+        ) {
+          removedContainer = people.splice(i, 1);
+        }
+      }
+
+      if (to === "main-list") {
+        people.splice(e.newDraggableIndex, 0, ...removedContainer);
+      }
+      return;
+    }
 
     let removedElement;
     for (let i = 0; i < people.length; i++) {
