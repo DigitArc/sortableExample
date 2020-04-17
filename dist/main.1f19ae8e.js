@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+})({"C:/Users/emre3/AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -149,7 +149,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"C:/Users/emre3/AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -184,17 +184,17 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"node_modules/bootstrap/dist/css/bootstrap.min.css":[function(require,module,exports) {
+},{"./bundle-url":"C:/Users/emre3/AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js"}],"node_modules/bootstrap/dist/css/bootstrap.min.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"main.css":[function(require,module,exports) {
+},{"_css_loader":"C:/Users/emre3/AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js"}],"main.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/sortablejs/modular/sortable.esm.js":[function(require,module,exports) {
+},{"_css_loader":"C:/Users/emre3/AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js"}],"node_modules/sortablejs/modular/sortable.esm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -337,9 +337,7 @@ var version = "1.10.2";
 
 function userAgent(pattern) {
   if (typeof window !== 'undefined' && window.navigator) {
-    return !!
-    /*@__PURE__*/
-    navigator.userAgent.match(pattern);
+    return !! /*@__PURE__*/navigator.userAgent.match(pattern);
   }
 }
 
@@ -3899,7 +3897,7 @@ Sortable.mount(new AutoScrollPlugin());
 Sortable.mount(Remove, Revert);
 var _default = Sortable;
 exports.default = _default;
-},{}],"../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
+},{}],"C:/Users/emre3/AppData/Roaming/npm/node_modules/parcel/node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -14985,7 +14983,7 @@ if ( typeof noGlobal === "undefined" ) {
 return jQuery;
 } );
 
-},{"process":"../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/process/browser.js"}],"data.js":[function(require,module,exports) {
+},{"process":"C:/Users/emre3/AppData/Roaming/npm/node_modules/parcel/node_modules/process/browser.js"}],"data.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15033,13 +15031,17 @@ var _data = require("./data");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 console.log(_data.people);
 var listContainer = (0, _jquery.default)("#list-container");
@@ -15052,7 +15054,7 @@ _data.people.map(function (item) {
   }
 
   if (item.categoryName) {
-    var childrenGroupWrapper = _jquery.default.parseHTML("<li data-type=\"category-container\" data-category-name=\"".concat(item.categoryName, "\" class=\"list-group-item\"><h3 class=\"mb-3\">").concat(item.categoryName, "</h3></li>"))[0];
+    var childrenGroupWrapper = _jquery.default.parseHTML("<li data-type=\"category-container\" data-category-name=\"".concat(item.categoryName, "\" class=\"list-group-item category-group\"><h3 class=\"mb-3\">").concat(item.categoryName, "</h3></li>"))[0];
 
     var childrenGroup = _jquery.default.parseHTML("<ul data-list=\"".concat(item.categoryName, "\" class=\"list-group pb-5 pt-5\"></ul>"))[0];
 
@@ -15067,6 +15069,7 @@ _data.people.map(function (item) {
 listContainer.append(mainContainer);
 var opts = {
   group: "shared",
+  filter: ".category-group",
   onEnd: function onEnd(e) {
     var draggedItemType = (0, _jquery.default)(e.item).attr("data-type");
     var movedItem = (0, _jquery.default)(e.item).text();
@@ -15129,7 +15132,7 @@ console.log(items[1]); // items.map((item) => Sortable.create(item, opts));
 // const items2 = $("#items-2")[0];
 // Sortable.create(items, opts);
 // Sortable.create(items2, opts);
-},{"bootstrap/dist/css/bootstrap.min.css":"node_modules/bootstrap/dist/css/bootstrap.min.css","./main.css":"main.css","sortablejs":"node_modules/sortablejs/modular/sortable.esm.js","jquery":"node_modules/jquery/dist/jquery.js","./data":"data.js"}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"bootstrap/dist/css/bootstrap.min.css":"node_modules/bootstrap/dist/css/bootstrap.min.css","./main.css":"main.css","sortablejs":"node_modules/sortablejs/modular/sortable.esm.js","jquery":"node_modules/jquery/dist/jquery.js","./data":"data.js"}],"C:/Users/emre3/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -15157,7 +15160,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57135" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51314" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -15333,5 +15336,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.js"], null)
+},{}]},{},["C:/Users/emre3/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
 //# sourceMappingURL=/main.1f19ae8e.js.map

@@ -26,7 +26,7 @@ people.map((item) => {
   }
   if (item.categoryName) {
     const childrenGroupWrapper = $.parseHTML(
-      `<li data-type="category-container" data-category-name="${item.categoryName}" class="list-group-item"><h3 class="mb-3">${item.categoryName}</h3></li>`
+      `<li data-type="category-container" data-category-name="${item.categoryName}" class="list-group-item category-group"><h3 class="mb-3">${item.categoryName}</h3></li>`
     )[0];
     const childrenGroup = $.parseHTML(
       `<ul data-list="${item.categoryName}" class="list-group pb-5 pt-5"></ul>`
@@ -46,6 +46,7 @@ listContainer.append(mainContainer);
 
 const opts = {
   group: "shared",
+  filter: ".category-group",
   onEnd: (e) => {
     const draggedItemType = $(e.item).attr("data-type");
     const movedItem = $(e.item).text();
